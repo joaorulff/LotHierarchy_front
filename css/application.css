@@ -58,3 +58,20 @@ h1{
 div.row{
     margin-top: 50px
 }
+
+.remove{
+  color: red !important;
+  display: inline !important;
+  margin-left: -17%;
+}
+
+.list-group-item{
+  padding: 0px;
+
+}
+
+.list-group{
+  margin-top: 5%;
+  max-width: 80%;
+  margin-left: 5%;
+}
