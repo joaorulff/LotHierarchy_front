@@ -44,12 +44,12 @@ dataGenerator.generateData = function(selectedYear){
     });
 
     
-    var beforeOBJ = {key: 'before'};
+    var beforeOBJ = {key: selectedYear - 1};
     beforeOBJ['added'] = dict['before']['added'];
     beforeOBJ['removed'] = dict['before']['removed'];
     beforeOBJ['total'] = dict['before']['total'];
     
-    var afterOBJ = {key: 'after'};
+    var afterOBJ = {key: selectedYear + 1};
     afterOBJ['added'] = dict['after']['added'];;
     afterOBJ['removed'] = dict['after']['removed'];;
     afterOBJ['total'] = dict['after']['total'];;

@@ -52,9 +52,9 @@ myApp.appendSvg = function(div)
 
 myApp.fillHeaders = function(year){
     
-    $("#previousHeader").text((parseInt(year)-1));
-    $("#currentHeader").text(year);
-    $("#nextHeader").text((parseInt(year)+1));
+    $("#previousHeader").text((parseInt(year)-1)).css('text-align','center');
+    $("#currentHeader").text(year).css('text-align','center');
+    $("#nextHeader").text((parseInt(year)+1)).css('text-align','center');
     
 }
 
@@ -99,21 +99,33 @@ myApp.buildMapConic = function(data, map, svg, state)
         .enter()
         .append("path")
         .attr("d", path)
-        .style('stroke', 'rgb(0,0,0)')
+        .style('stroke', 'white')
         .style('fill', function(d,i){
             var BBLID = d["BBL"];
             if(state != 'current'){
                 if(myApp.diffDict[state]['added'].indexOf(BBLID) >= 0){
                     return "blue";
                 }else if(myApp.diffDict[state]['removed'].indexOf(BBLID) >= 0){
-                    return "red";
+                    return "orange";
                 }else{
                     return '#E3FBFC';
                 }
             }else{
-                return '#E3FBFC';
+                if(myApp.diffDict['before']['added'].indexOf(BBLID) >= 0){
+                   return "blue";
+                   }
+                else if(myApp.diffDict['after']['removed'].indexOf(BBLID) >= 0){
+                    return "orange";
+                }else{
+                    return '#E3FBFC';
+                }
+                
             }
-    });
+    })
+    .on("click", function(d, i){
+        console.log(d);    
+    })
+    ;
 
 }
 

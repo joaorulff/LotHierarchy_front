@@ -113,7 +113,7 @@ barChart.appendYLegend = function(yAxisRef, legendText){
     
     yAxisRef.append("text")
       .attr("x", 2)
-      .attr("y", 2)
+      .attr("y", -30)
       .attr("fill", "black")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(-90)")
@@ -202,10 +202,10 @@ barChart.start = function(
     var xAxis = barChart.appendXAxis(svgGroup);
     var yAxis = barChart.appendYAxis(svgGroup);
     
-    barChart.appendYLegend(yAxis, "Eixo Y");
-    barChart.appendXLegend(xAxis, "Eixo X");
+    barChart.appendYLegend(yAxis, "Lots");
+    barChart.appendXLegend(xAxis, "Year");
     
-    barChart.appendBrush(mainSVG);
+    //barChart.appendBrush(mainSVG);
     
     barChart.appendDataLabel(svgGroup);
     
