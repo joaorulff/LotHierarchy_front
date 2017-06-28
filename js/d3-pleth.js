@@ -75,16 +75,21 @@ myApp.buildMapConic = function(data, map, svg, state)
 {
 
     function zoomed() {
-    map.style("stroke-width", 1.5 / d3.event.transform.k + "px");
-      // g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")"); // not in d3 v4
-      map.attr("transform", d3.event.transform); // updated for d3 v4
+      //this two lines bellow are the previous version, where only a map performs zoom at a time
+      //value.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+      //value.attr("transform", d3.event.transform); // updated for d3 v4
+
+      $.each(myApp.allMaps, function(index, value) {
+         value.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+         value.attr("transform", d3.event.transform); // updated for d3 v4
+     });
+
 }
 
     var projection = d3.geoMercator()
-  					.center([-73.94, 40.70])
-  					.scale(150000)
-  					.translate([(myApp.cw)/2, (myApp.ch) /2]);
-
+                        .center([-73.97, 40.78])
+                     	.scale(150000)
+            				.translate([(myApp.cw)/2, (myApp.ch) /2]);
    var zoom = d3.zoom()
     .scaleExtent([1, 8])
     .on("zoom", zoomed);
@@ -93,6 +98,15 @@ myApp.buildMapConic = function(data, map, svg, state)
 
     var path = d3.geoPath()
         .projection(projection);
+
+// for eliminate coordinates moves, comment this call
+     map.call(
+        d3.drag().on("drag",
+        function(){
+           $.each(myApp.allMaps, function(index, value) {
+             value.attr("transform", "translate(" + d3.event.x + "," + d3.event.y + ")");
+          });
+     }));
 
     map.selectAll("path")
         .data(data)
@@ -151,8 +165,7 @@ myApp.run = function(year)
     var nextMap = myApp.appendMapGroup(nextSVG);
     myApp.loadGeoJson(path, nextMap, nextSVG, 'after');
 
-
-
+    myApp.allMaps = [previouMap,currentMap,nextMap];
 
 }
 

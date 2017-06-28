@@ -8,6 +8,15 @@ function removeList(id){
 }
 
 function addListItem(data){
+  var lot_type = {0:'Mixed or Unknown',
+                  1: 'Block Assemblage',
+                  2: 'Waterfront',
+                  3:'Corner',
+                  4:'Through',
+                  5:'Inside',
+                  6: 'Interior Lot',
+                  7: 'Island Lot',
+                  8: 'Alley Lot'}
   var element = $(document.createElement('ul'))
                   .addClass('list-group')
                   .attr('id','list-'+data.BBL)
@@ -33,15 +42,15 @@ function addListItem(data){
                   .append(
                     $(document.createElement('li'))
                       .addClass('list-group-item')
-                      .html('<strong>Building Area: </strong>'+data.bldgArea))
+                      .html('<strong>Building Area (ft²): </strong>'+data.bldgArea))
                   .append(
                     $(document.createElement('li'))
                       .addClass('list-group-item')
-                      .html('<strong>Lot Area: </strong>'+data.lotArea))
+                      .html('<strong>Lot Area (ft²): </strong>'+data.lotArea))
                   .append(
                     $(document.createElement('li'))
                       .addClass('list-group-item')
-                      .html('<strong>Lot Type: </strong>'+data.lotType));
+                      .html('<strong>Lot Type: </strong>'+ lot_type[data.lotType]));
 
  $('#lists').prepend(element);
 }

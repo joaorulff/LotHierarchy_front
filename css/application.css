@@ -44,6 +44,7 @@ body {
 div.inline {
     float:left;
     border-style: solid;
+    border-width: thin;
     margin-right: 40px;
 }
 
@@ -67,7 +68,6 @@ div.row{
 
 .list-group-item{
   padding: 0px;
-
 }
 
 .list-group{
