@@ -100,13 +100,13 @@ myApp.buildMapConic = function(data, map, svg, state)
         .projection(projection);
 
 // for eliminate coordinates moves, comment this call
-     map.call(
-        d3.drag().on("drag",
-        function(){
-           $.each(myApp.allMaps, function(index, value) {
-             value.attr("transform", "translate(" + d3.event.x + "," + d3.event.y + ")");
-          });
-     }));
+//     map.call(
+//        d3.drag().on("drag",
+//        function(){
+//           $.each(myApp.allMaps, function(index, value) {
+//             value.attr("transform", "translate(" + d3.event.x + "," + d3.event.y + ")");
+//          });
+//     }));
 
     map.selectAll("path")
         .data(data)
